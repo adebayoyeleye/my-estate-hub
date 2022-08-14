@@ -1,15 +1,20 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 
+	let navigate = useNavigate();
+
 	const handleLogin = event => {
 		event.preventDefault();
-		email === "fake@email.com" && password === "Password10$"
-			? setError("Login Successful!")
-			: setError("Error: Invalid email and/or password!");
+		if (email === "fake@email.com" && password === "Password10$") {
+			navigate("/home");
+		} else {
+			setError("Error: Invalid email and/or password!");
+		}
 		setPassword("");
 	};
 
