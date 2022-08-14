@@ -7,7 +7,7 @@ describe("login", () => {
 
 	it("displays login and link to email signup", () => {
 		cy.contains(/login/i);
-		cy.contains(/sign up/i).should("have", "href", "/register");
+		cy.contains(/sign up/i).should("have.attr", "href", "/register");
 	});
 
 	it("requires email and password", () => {

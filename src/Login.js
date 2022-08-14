@@ -1,0 +1,42 @@
+import React, { useState } from "react";
+
+function Login() {
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
+
+	const handleLogin = event => {
+		event.preventDefault();
+		email === "fake@email.com" && password === "Password10$"
+			? setError("Login Successful!")
+			: setError("Error: Invalid email and/or password!");
+		setPassword("");
+	};
+
+	return (
+		<div>
+			{error && <p>{error}</p>}
+			<input
+				type="text"
+				placeholder="Email"
+				value={email}
+				onChange={e => setEmail(e.target.value)}
+				required
+				data-testid="email"
+			/>
+			<input
+				type="password"
+				placeholder="Password"
+				value={password}
+				onChange={e => setPassword(e.target.value)}
+				required
+				data-testid="password"
+			/>
+			<button type="submit" onClick={handleLogin} data-testid="login">
+				Login
+			</button>
+			<a href="/register">Sign Up</a>
+		</div>
+	);
+}
+export default Login;
