@@ -40,7 +40,7 @@ function Login() {
 			<button type="submit" onClick={handleLogin} data-testid="login">
 				Login
 			</button>
-			<a href="/register">Sign Up</a>
+			<a href="/user-register">Sign Up</a>
 		</div>
 	);
 }
