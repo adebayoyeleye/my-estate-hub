@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userUpdated } from "../users/userSlice";
 
-function Login() {
-	const [email, setEmail] = useState("");
+function UserRegistration() {
+	const user = useSelector(state => state.user);
+	const dispatch = useDispatch();
+
+	const [email, setEmail] = useState(user ? user.email : "");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [community, setCommunity] = useState("");
-	const [address, setAddress] = useState("");
-	const [iAm, setIAm] = useState("");
+	const [community, setCommunity] = useState(user ? user.community : "");
+	const [address, setAddress] = useState(user ? user.address : "");
+	const [iAm, setIAm] = useState(user ? user.role : "");
 
 	const [error, setError] = useState("");
 
@@ -18,6 +23,14 @@ function Login() {
 		if (email === "" || password === "") {
 			setError("Error: Fields are mandatory!");
 		} else {
+			dispatch(
+				userUpdated({
+					email,
+					community,
+					address,
+					role: iAm
+				})
+			);
 			navigate("/home");
 		}
 	};
@@ -84,4 +97,4 @@ function Login() {
 		</div>
 	);
 }
-export default Login;
+export default UserRegistration;
