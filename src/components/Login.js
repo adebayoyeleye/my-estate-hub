@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FormField from "./FormField";
 
 function Login() {
 	const [email, setEmail] = useState("");
@@ -21,22 +22,23 @@ function Login() {
 	return (
 		<div>
 			{error && <p>{error}</p>}
-			<input
+			<FormField label="Email" value={email} onChange={e => setEmail(e.target.value)} required />
+			{/* <input
 				type="text"
 				placeholder="Email"
 				value={email}
 				onChange={e => setEmail(e.target.value)}
 				required
 				data-testid="email"
-			/>
-			<input
+			/> */}
+			<FormField
 				type="password"
-				placeholder="Password"
+				label="Password"
 				value={password}
 				onChange={e => setPassword(e.target.value)}
 				required
-				data-testid="password"
 			/>
+
 			<button type="submit" onClick={handleLogin} data-testid="login">
 				Login
 			</button>
